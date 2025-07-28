@@ -5,66 +5,353 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: #24292e;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            background-color: #fff;
         }
+        
+        /* Header Styles */
         .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e1e4e8;
+            background: #24292e;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .content {
-            background: #f6f8fa;
-            padding: 30px;
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo:hover {
+            color: #f0f0f0;
+        }
+        
+        /* Navigation Styles */
+        .nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            position: relative;
+            margin-left: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
             border-radius: 6px;
-            margin: 20px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
-        .button {
+        
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #24292e;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f6f8fa;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Cards Section */
+        .cards-section {
+            margin: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #24292e;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: #0366d6;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .card p {
+            color: #586069;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 0.75rem 1.5rem;
             background: #0366d6;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            font-weight: 600;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
         }
-        .button:hover {
+        
+        .btn:hover {
             background: #005cc5;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .btn-secondary {
+            background: #f6f8fa;
+            color: #24292e;
+            border: 1px solid #e1e4e8;
+        }
+        
+        .btn-secondary:hover {
+            background: #e1e4e8;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #f6f8fa;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #e1e4e8;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            color: #586069;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-item {
+                margin: 0.25rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Masetra Documentation</h1>
-        <p>Comprehensive documentation for Masetra Quality Management System</p>
-    </div>
-    
-    <div class="content">
-        <h2>Welcome to Masetra Documentation</h2>
-        <p>Masetra is building the leading digital quality management solution for the pharmaceutical industry in East Africa.</p>
-        
-        <h3>📚 Documentation Sections</h3>
-        <ul>
-            <li><strong>Getting Started</strong> - Installation and setup guides</li>
-            <li><strong>User Guide</strong> - How to use Masetra features</li>
-            <li><strong>Technical Documentation</strong> - Architecture and development guides</li>
-            <li><strong>Compliance</strong> - Regulatory and security information</li>
-        </ul>
-        
-        <p>
-            <a href="docs/getting-started/installation" class="button">Get Started</a>
-        </p>
-    </div>
-    
-    <div style="text-align: center; margin-top: 40px; color: #6a737d; font-size: 0.9em;">
-        <p>© 2025 Masetra-Group. All rights reserved.</p>
-        <p><a href="https://github.com/masetra/masetra-docs">View on GitHub</a></p>
-    </div>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">Masetra Documentation</a>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Getting Started ▼</a>
+                    <div class="dropdown">
+                        <a href="docs/getting-started/installation" class="dropdown-item">Installation Guide</a>
+                        <a href="docs/getting-started/quick-start" class="dropdown-item">Quick Start</a>
+                        <a href="docs/getting-started/system-requirements" class="dropdown-item">System Requirements</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">User Guide ▼</a>
+                    <div class="dropdown">
+                        <a href="docs/user-guide/deviations" class="dropdown-item">Deviations Management</a>
+                        <a href="docs/user-guide/capas" class="dropdown-item">CAPA Management</a>
+                        <a href="docs/user-guide/user-management" class="dropdown-item">User Management</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Technical ▼</a>
+                    <div class="dropdown">
+                        <a href="docs/technical/api-reference" class="dropdown-item">API Reference</a>
+                        <a href="docs/technical/architecture" class="dropdown-item">System Architecture</a>
+                        <a href="docs/technical/deployment" class="dropdown-item">Deployment Guide</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Compliance ▼</a>
+                    <div class="dropdown">
+                        <a href="docs/compliance/regulatory" class="dropdown-item">Regulatory Compliance</a>
+                        <a href="docs/compliance/security" class="dropdown-item">Security Framework</a>
+                        <a href="docs/compliance/audit-trails" class="dropdown-item">Audit Trail Management</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="hero">
+            <h1>Masetra Quality Management System Documentation</h1>
+            <p>Comprehensive documentation for Masetra - the leading digital quality management solution for the pharmaceutical industry in East Africa.</p>
+        </section>
+
+        <section class="cards-section">
+            <h2 class="section-title">Documentation Sections</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>📘 Getting Started</h3>
+                    <p>Installation guides, system requirements, and quick start tutorials to get you up and running with Masetra.</p>
+                    <a href="docs/getting-started/installation" class="btn">Get Started</a>
+                </div>
+                
+                <div class="card">
+                    <h3>👥 User Guide</h3>
+                    <p>Comprehensive guides on using Masetra features and workflows for daily operations.</p>
+                    <a href="docs/user-guide/deviations" class="btn">Learn More</a>
+                </div>
+                
+                <div class="card">
+                    <h3>⚙️ Technical</h3>
+                    <p>Architecture, API reference, and deployment information for developers and IT teams.</p>
+                    <a href="docs/technical/architecture" class="btn">Technical Docs</a>
+                </div>
+                
+                <div class="card">
+                    <h3>⚖️ Compliance</h3>
+                    <p>Regulatory requirements, security measures, and audit information for compliance teams.</p>
+                    <a href="docs/compliance/regulatory" class="btn">Compliance</a>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 3rem;">
+            <h3>Need Help?</h3>
+            <p>For support and questions, contact our team at <a href="mailto:info@masetra.com" style="color: #0366d6;">info@masetra.com</a></p>
+            <div style="margin-top: 1rem;">
+                <a href="https://github.com/masetra/masetra-docs" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Masetra-Group. All rights reserved.</p>
+            <p>Built with ❤️ for the pharmaceutical industry</p>
+        </div>
+    </footer>
 </body>
 </html>

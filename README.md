@@ -22,7 +22,7 @@ We welcome contributions to our documentation! Please read our [contributing gui
 
 ## 📞 Support
 
-For documentation questions, contact docs@masetra.com
+For documentation questions, contact info@masetra.com
 
 ---
 *© 2025 Masetra-Group. All rights reserved.*
