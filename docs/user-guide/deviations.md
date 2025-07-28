@@ -1,6 +1,3 @@
-
-## **4. USER GUIDE DOCUMENTS**
-
 ---
 title: Deviations Management
 ---
