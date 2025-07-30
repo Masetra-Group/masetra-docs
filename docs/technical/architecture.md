@@ -4,10 +4,6 @@ title: "System Architecture"
 description: "Comprehensive overview of Masetra's technical architecture, design principles, and system components"
 ---
 
-# Masetra System Architecture
-
-Comprehensive overview of Masetra's technical architecture, design principles, and system components.
-
 ## 🏗️ Architecture Overview
 
 Masetra follows a modern, scalable microservices architecture designed for high availability, security, and regulatory compliance. The system is built using industry-standard technologies and follows best practices for enterprise software development.

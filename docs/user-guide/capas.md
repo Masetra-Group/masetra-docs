@@ -1,12 +1,8 @@
 ---
 layout: default
-title: "CAPA Management"
+title: "CAPA (Corrective and Preventive Actions) Management"
 description: "Learn how to manage Corrective and Preventive Actions within Masetra Quality Management System"
 ---
-
-# CAPA (Corrective and Preventive Actions) Management
-
-Learn how to manage Corrective and Preventive Actions within Masetra Quality Management System.
 
 ## 📋 What are CAPAs?
 

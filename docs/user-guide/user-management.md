@@ -4,10 +4,6 @@ title: "User Management"
 description: "Learn how to manage users, roles, and permissions within Masetra Quality Management System"
 ---
 
-# User Management
-
-Learn how to manage users, roles, and permissions within Masetra Quality Management System.
-
 ## 👥 User Management Overview
 
 Masetra's user management system provides comprehensive control over user access, roles, and permissions to ensure data security and regulatory compliance while enabling efficient collaboration.

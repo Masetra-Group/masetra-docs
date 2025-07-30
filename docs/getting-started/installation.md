@@ -4,10 +4,6 @@ title: "Installation Guide"
 description: "Step-by-step guide to install and set up Masetra Quality Management System"
 ---
 
-# Installation Guide
-
-Learn how to install and set up Masetra for your organization.
-
 ## 📋 System Requirements
 
 ### Server Requirements

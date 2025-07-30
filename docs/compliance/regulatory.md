@@ -4,10 +4,6 @@ title: "Regulatory Compliance"
 description: "Comprehensive guide to Masetra's compliance with pharmaceutical industry regulations and standards"
 ---
 
-# Regulatory Compliance
-
-Comprehensive guide to Masetra's compliance with pharmaceutical industry regulations and standards.
-
 ## 🎯 Compliance Overview
 
 Masetra is designed from the ground up to meet the stringent regulatory requirements of the pharmaceutical industry. Our platform helps organizations maintain compliance while improving operational efficiency and quality management processes.

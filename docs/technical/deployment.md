@@ -4,10 +4,6 @@ title: "Deployment Guide"
 description: "Comprehensive guide for deploying Masetra in various environments including cloud, on-premises, and hybrid configurations"
 ---
 
-# Masetra Deployment Guide
-
-Comprehensive guide for deploying Masetra in various environments including cloud, on-premises, and hybrid configurations.
-
 ## 🚀 Deployment Options
 
 Masetra offers multiple deployment options to meet different organizational needs and compliance requirements.

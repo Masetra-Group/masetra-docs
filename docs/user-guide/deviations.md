@@ -4,10 +4,6 @@ title: "Deviations Management"
 description: "Learn how to manage deviations within Masetra Quality Management System"
 ---
 
-# Deviations Management
-
-Learn how to manage deviations within Masetra Quality Management System.
-
 ## 📋 What are Deviations?
 
 A deviation is any departure from an approved procedure, specification, or standard. In pharmaceutical manufacturing, deviations must be properly documented, investigated, and resolved to maintain product quality and regulatory compliance.

@@ -4,10 +4,6 @@ title: "System Requirements"
 description: "Step-by-step guide to ensure your system meets requirements for optimal Masetra performance"
 ---
 
-# System Requirements
-
-Ensure your system meets these requirements for optimal Masetra performance.
-
 ## 🖥️ Client Requirements
 
 ### Web Browsers

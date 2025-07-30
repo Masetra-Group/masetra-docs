@@ -1,12 +1,8 @@
 ---
 layout: default
-title: "Security Framework"
+title: "Masetra Security Framework"
 description: "Comprehensive overview of Masetra's security architecture, policies, and practices to protect your pharmaceutical quality data"
 ---
-
-# Masetra Security Framework
-
-Comprehensive overview of Masetra's security architecture, policies, and practices to protect your pharmaceutical quality data.
 
 ## 🔐 Security Overview
 

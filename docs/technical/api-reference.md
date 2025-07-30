@@ -4,10 +4,6 @@ title: "API Reference"
 description: "Comprehensive documentation for Masetra's RESTful API endpoints and integration capabilities"
 ---
 
-# Masetra API Reference
-
-Comprehensive documentation for Masetra's RESTful API endpoints and integration capabilities.
-
 ## 📋 API Overview
 
 Masetra provides a comprehensive RESTful API that allows integration with external systems, custom applications, and automated workflows. All API endpoints follow REST principles and return JSON responses.

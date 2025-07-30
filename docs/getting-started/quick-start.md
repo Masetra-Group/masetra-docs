@@ -4,10 +4,6 @@ title: "Quick Start Guide"
 description: "Step-by-step guide to get up and running with Masetra Quality Management System"
 ---
 
-# Quick Start Guide
-
-Get up and running with Masetra in minutes.
-
 ## 🚀 5-Minute Setup
 
 Follow these steps to quickly set up and start using Masetra.
