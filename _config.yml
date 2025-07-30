@@ -1,27 +1,69 @@
-title: Masetra Documentation
-description: "Comprehensive documentation for Masetra Quality Management System"
-theme: jekyll-theme-minimal
+title: "Masetra Documentation"
+description: "Comprehensive documentation for Masetra - the leading digital quality management solution for the pharmaceutical industry in East Africa."
+baseurl: "/masetra-docs" 
+url: "https://masetra-group.github.io/masetra-docs/" 
+
+# Build settings
 markdown: kramdown
 highlighter: rouge
-
-# GitHub Pages settings
-baseurl: "/masetra-docs"
-url: "https://masetra-group.github.io/masetra-docs/"
-
-# Navigation
-navigation:
-  - title: Home
-    url: /
-  - title: Getting Started
-    url: /docs/getting-started/installation
-  - title: User Guide
-    url: /docs/user-guide/deviations
-  - title: Technical
-    url: /docs/technical/architecture
-  - title: Compliance
-    url: /docs/compliance/regulatory
-
-# Plugins
+theme: jekyll-theme-minimal
 plugins:
-  - jekyll-sitemap
   - jekyll-feed
+  - jekyll-sitemap
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+# Collections (optional - for better organization)
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Exclude files from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Site navigation
+navigation:
+  getting_started:
+    - title: "Installation Guide"
+      url: "/docs/getting-started/installation"
+    - title: "Quick Start"
+      url: "/docs/getting-started/quick-start"
+    - title: "System Requirements"
+      url: "/docs/getting-started/system-requirements"
+  
+  user_guide:
+    - title: "Deviations Management"
+      url: "/docs/user-guide/deviations"
+    - title: "CAPA Management"
+      url: "/docs/user-guide/capas"
+    - title: "User Management"
+      url: "/docs/user-guide/user-management"
+      
+  technical:
+    - title: "API Reference"
+      url: "/docs/technical/api-reference"
+    - title: "System Architecture"
+      url: "/docs/technical/architecture"
+    - title: "Deployment Guide"
+      url: "/docs/technical/deployment"
+      
+  compliance:
+    - title: "Regulatory Compliance"
+      url: "/docs/compliance/regulatory"
+    - title: "Security Framework"
+      url: "/docs/compliance/security"
+    - title: "Audit Trail Management"
+      url: "/docs/compliance/audit-trails"

@@ -1,66 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} - Masetra Documentation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
-    <style>
-        .markdown-body {
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 45px;
-        }
-        
-        @media (max-width: 767px) {
-            .markdown-body {
-                padding: 15px;
-            }
-        }
-        
-        nav {
-            background: #f6f8fa;
-            padding: 10px;
-            border-bottom: 1px solid #d0d7de;
-        }
-        
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        nav li {
-            margin-right: 20px;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: #0969da;
-            font-weight: 500;
-        }
-        
-        nav a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/docs/getting-started/installation">Getting Started</a></li>
-            <li><a href="/docs/user-guide/deviations">User Guide</a></li>
-            <li><a href="/docs/technical/architecture">Technical</a></li>
-            <li><a href="/docs/compliance/regulatory">Compliance</a></li>
-        </ul>
-    </nav>
-    <main class="markdown-body">
-        {{ content }}
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="header-content">
+            <a href="{{ '/' | relative_url }}" class="logo">
+                <i class="fas fa-cogs"></i>
+                {{ site.title }}
+            </a>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="{{ '/' | relative_url }}" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-rocket"></i>
+                        Getting Started
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        {% for item in site.navigation.getting_started %}
+                        <a href="{{ item.url | relative_url }}" class="dropdown-item">
+                            <i class="fas fa-{% if item.title contains 'Installation' %}download{% elsif item.title contains 'Quick' %}bolt{% else %}server{% endif %}"></i>
+                            {{ item.title }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        User Guide
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        {% for item in site.navigation.user_guide %}
+                        <a href="{{ item.url | relative_url }}" class="dropdown-item">
+                            <i class="fas fa-{% if item.title contains 'Deviations' %}exclamation-triangle{% elsif item.title contains 'CAPA' %}clipboard-check{% else %}users-cog{% endif %}"></i>
+                            {{ item.title }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-code"></i>
+                        Technical
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        {% for item in site.navigation.technical %}
+                        <a href="{{ item.url | relative_url }}" class="dropdown-item">
+                            <i class="fas fa-{% if item.title contains 'API' %}plug{% elsif item.title contains 'Architecture' %}sitemap{% else %}cloud-upload-alt{% endif %}"></i>
+                            {{ item.title }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-shield-alt"></i>
+                        Compliance
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown">
+                        {% for item in site.navigation.compliance %}
+                        <a href="{{ item.url | relative_url }}" class="dropdown-item">
+                            <i class="fas fa-{% if item.title contains 'Regulatory' %}balance-scale{% elsif item.title contains 'Security' %}lock{% else %}search{% endif %}"></i>
+                            {{ item.title }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content fade-in">
+        {% if page.layout == 'home' %}
+            <!-- Home page hero section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <i class="fas fa-file-alt hero-icon"></i>
+                    <h1>{{ site.title }}</h1>
+                    <p>{{ site.description }}</p>
+                </div>
+            </section>
+        {% endif %}
+
+        <div class="content-wrapper">
+            {% if page.layout != 'home' %}
+                <!-- Breadcrumb navigation for documentation pages -->
+                <nav class="breadcrumb">
+                    <a href="{{ '/' | relative_url }}">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
+                    {% for crumb in crumbs offset: 1 %}
+                        {% unless forloop.last %}
+                            <i class="fas fa-chevron-right"></i>
+                            <a href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}">
+                                {{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}
+                            </a>
+                        {% else %}
+                            <i class="fas fa-chevron-right"></i>
+                            <span>{{ page.title | default: crumb | replace:'-',' ' | remove:'.html' | capitalize }}</span>
+                        {% endunless %}
+                    {% endfor %}
+                </nav>
+                
+                <!-- Page title -->
+                <div class="page-header">
+                    <h1>{{ page.title }}</h1>
+                    {% if page.description %}
+                        <p class="page-description">{{ page.description }}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <!-- Page content -->
+            <div class="page-content">
+                {{ content }}
+            </div>
+        </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Masetra-Group. All rights reserved.</p>
+            <p>Built with <span class="footer-heart">❤️</span> for the pharmaceutical industry</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling and animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to content when it comes into view
+            const content = document.querySelector('.page-content');
+            if (content) {
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(30px)';
+                content.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 ---
-layout: default
-title: Masetra Documentation
+layout: home
+title: "Masetra Documentation Home"
+description: "Comprehensive documentation for Masetra - the leading digital quality management solution for the pharmaceutical industry in East Africa."
 ---
 
 # Masetra Quality Management System Documentation

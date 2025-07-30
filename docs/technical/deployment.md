@@ -1,5 +1,7 @@
 ---
-title: Deployment Guide
+layout: default
+title: "Deployment Guide"
+description: "Comprehensive guide for deploying Masetra in various environments including cloud, on-premises, and hybrid configurations"
 ---
 
 # Masetra Deployment Guide
@@ -11,7 +13,9 @@ Comprehensive guide for deploying Masetra in various environments including clou
 Masetra offers multiple deployment options to meet different organizational needs and compliance requirements.
 
 ### Cloud Deployment (Recommended)
+
 **Managed Service:** Fully managed by Masetra
+
 - **Automatic Updates:** Zero-downtime deployments
 - **99.9% Uptime SLA:** Enterprise-grade reliability
 - **Global Infrastructure:** Multi-region availability
@@ -19,7 +23,9 @@ Masetra offers multiple deployment options to meet different organizational need
 - **Scalability:** Automatic resource scaling
 
 ### Self-Hosted Deployment
+
 **On-Premises:** Deployed within your infrastructure
+
 - **Complete Control:** Full administrative control
 - **Data Sovereignty:** Data remains within your network
 - **Custom Integration:** Deep system integration
@@ -27,7 +33,9 @@ Masetra offers multiple deployment options to meet different organizational need
 - **Cost Control:** Predictable licensing costs
 
 ### Hybrid Deployment
+
 **Mixed Approach:** Combination of cloud and on-premises
+
 - **Flexible Architecture:** Choose components for each environment
 - **Gradual Migration:** Phased transition approach
 - **Optimized Performance:** Critical data on-premises
@@ -38,6 +46,7 @@ Masetra offers multiple deployment options to meet different organizational need
 ### AWS Deployment
 
 #### Prerequisites
+
 - AWS account with appropriate permissions
 - Domain name registered in Route 53 (optional)
 - SSL certificate in Certificate Manager
@@ -45,6 +54,7 @@ Masetra offers multiple deployment options to meet different organizational need
 #### Deployment Steps
 
 1. **Launch CloudFormation Stack**
+
 ```bash
 # Download CloudFormation template
 wget https://downloads.masetra.com/aws/masetra-aws-template.yaml
@@ -366,7 +376,7 @@ INTEGRATION_EMAIL_PROVIDER=sendgrid
 Configuration Files
 Docker Compose Configuration
 
-yaml
+```yaml
 version: '3.8'
 
 services:
@@ -429,7 +439,7 @@ volumes:
   redis_data:
   static_volume:
   media_volume:
-
+```
 
 🔧 Maintenance and Operations
 Backup and Recovery
@@ -459,6 +469,7 @@ find $BACKUP_DIR -name "*.tar.gz" -mtime +30 -delete
 ```
 
 Restore Process
+
 ```bash
 # Restore database
 psql -h localhost -U masetra_user masetra < db_backup_20240115_143000.sql
@@ -485,7 +496,8 @@ curl -f https://masetra.yourcompany.com/api/health/
 ```
 
 Monitoring Configuration
-yaml
+
+```yaml
 # Prometheus configuration
 scrape_configs:
   - job_name: 'masetra'
@@ -493,7 +505,7 @@ scrape_configs:
       - targets: ['masetra.yourcompany.com:8000']
     metrics_path: '/metrics'
     scrape_interval: 30s
-
+```
 
 Update and Upgrade Process
 Version Upgrade Steps
@@ -511,6 +523,7 @@ Version Upgrade Steps
 6. Health Check: Verify system functionality
 
 7. Maintenance Mode Off: Disable maintenance mode
+
 ```bash
 # Example upgrade script
 #!/bin/bash

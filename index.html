@@ -4,6 +4,7 @@
     <title>Masetra Documentation</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,21 +13,23 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #24292e;
-            background-color: #fff;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #e3d6b4 0%, #f5f0e8 100%);
+            min-height: 100vh;
         }
         
         /* Header Styles */
         .header {
-            background: #24292e;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             color: white;
             padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(199, 174, 106, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 3px solid #C7AE6A;
         }
         
         .header-content {
@@ -39,14 +42,27 @@
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 700;
             text-decoration: none;
-            color: white;
+            color: #C7AE6A;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
         
         .logo:hover {
-            color: #f0f0f0;
+            color: #e3d6b4;
+            transform: scale(1.05);
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #C7AE6A, #e3d6b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         /* Navigation Styles */
@@ -59,36 +75,59 @@
         
         .nav-item {
             position: relative;
-            margin-left: 2rem;
+            margin-left: 1.5rem;
         }
         
         .nav-link {
             color: white;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            display: block;
-            transition: background-color 0.2s;
-            border-radius: 4px;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #C7AE6A, #e3d6b4);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .nav-link:hover::before {
+            left: 0;
         }
         
         .nav-link:hover {
-            background-color: rgba(255,255,255,0.1);
+            color: #000000;
+            transform: translateY(-2px);
         }
         
         /* Dropdown Styles */
         .dropdown {
             position: absolute;
-            top: 100%;
+            top: 120%;
             left: 0;
             background: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-radius: 6px;
+            min-width: 250px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 15px;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
             z-index: 1000;
+            border: 2px solid #C7AE6A;
+            overflow: hidden;
         }
         
         .nav-item:hover .dropdown {
@@ -98,20 +137,46 @@
         }
         
         .dropdown-item {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: #24292e;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            color: #1a1a1a;
             text-decoration: none;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background-color 0.2s;
+            border-bottom: 1px solid #e3d6b4;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #C7AE6A, #e3d6b4);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .dropdown-item:hover::before {
+            width: 100%;
         }
         
         .dropdown-item:hover {
-            background-color: #f6f8fa;
+            color: #000000;
+            font-weight: 600;
+            transform: translateX(10px);
         }
         
         .dropdown-item:last-child {
             border-bottom: none;
+        }
+        
+        .dropdown-item i {
+            color: #C7AE6A;
+            width: 20px;
         }
         
         /* Main Content */
@@ -123,103 +188,268 @@
         
         .hero {
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-bottom: 4rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
             color: white;
-            border-radius: 10px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(199, 174, 106, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #C7AE6A, #e3d6b4, white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            color: #e3d6b4;
+        }
+        
+        .hero-icon {
+            font-size: 4rem;
+            color: #C7AE6A;
+            margin-bottom: 2rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
         
         /* Cards Section */
         .cards-section {
-            margin: 3rem 0;
+            margin: 4rem 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 2rem;
-            color: #24292e;
+            margin-bottom: 3rem;
+            color: #000000;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #C7AE6A, #e3d6b4);
+            border-radius: 2px;
         }
         
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
         
         .card {
             background: white;
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid #e3d6b4;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(199, 174, 106, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(199, 174, 106, 0.1), rgba(227, 214, 180, 0.1));
+            transition: left 0.4s ease;
+            z-index: 1;
+        }
+        
+        .card:hover::before {
+            left: 0;
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(199, 174, 106, 0.4);
+            border-color: #C7AE6A;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            color: #C7AE6A;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover .card-icon {
+            transform: rotateY(360deg);
         }
         
         .card h3 {
-            color: #0366d6;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            color: #000000;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
         
         .card p {
-            color: #586069;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            opacity: 0.8;
         }
         
         .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: #0366d6;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #C7AE6A, #e3d6b4);
+            color: #000000;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: background-color 0.2s;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(199, 174, 106, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #000000, #1a1a1a);
+            transition: left 0.3s ease;
+            z-index: 1;
+        }
+        
+        .btn:hover::before {
+            left: 0;
+        }
+        
+        .btn-content {
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+        
+        .btn:hover .btn-content {
+            color: white;
         }
         
         .btn:hover {
-            background: #005cc5;
-            color: white;
-            text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(199, 174, 106, 0.5);
         }
         
         .btn-secondary {
-            background: #f6f8fa;
-            color: #24292e;
-            border: 1px solid #e1e4e8;
+            background: transparent;
+            color: #000000;
+            border: 2px solid #C7AE6A;
         }
         
-        .btn-secondary:hover {
-            background: #e1e4e8;
+        .btn-secondary::before {
+            background: linear-gradient(45deg, #C7AE6A, #e3d6b4);
+        }
+        
+        /* Help Section */
+        .help-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #e3d6b4;
+            box-shadow: 0 10px 30px rgba(199, 174, 106, 0.2);
+        }
+        
+        .help-section h3 {
+            color: #000000;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .help-section p {
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .help-section a {
+            color: #C7AE6A;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .help-section a:hover {
+            color: #000000;
         }
         
         /* Footer */
         .footer {
-            background: #f6f8fa;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            border-top: 1px solid #e1e4e8;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 3px solid #C7AE6A;
         }
         
         .footer-content {
@@ -227,7 +457,21 @@
             margin: 0 auto;
             padding: 0 20px;
             text-align: center;
-            color: #586069;
+        }
+        
+        .footer p {
+            margin-bottom: 0.5rem;
+            color: #e3d6b4;
+        }
+        
+        .footer-heart {
+            color: #C7AE6A;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
         
         /* Mobile Responsive */
@@ -247,12 +491,36 @@
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -260,41 +528,99 @@
     <!-- Header with Navigation -->
     <header class="header">
         <div class="header-content">
-            <a href="/" class="logo">Masetra Documentation</a>
+            <a href="/" class="logo">
+                <i class="fas fa-cogs"></i>
+                Masetra Documentation
+            </a>
             <ul class="nav">
                 <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Getting Started ▼</a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-rocket"></i>
+                        Getting Started
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
                     <div class="dropdown">
-                        <a href="docs/getting-started/installation" class="dropdown-item">Installation Guide</a>
-                        <a href="docs/getting-started/quick-start" class="dropdown-item">Quick Start</a>
-                        <a href="docs/getting-started/system-requirements" class="dropdown-item">System Requirements</a>
+                        <a href="docs/getting-started/installation" class="dropdown-item">
+                            <i class="fas fa-download"></i>
+                            Installation Guide
+                        </a>
+                        <a href="docs/getting-started/quick-start" class="dropdown-item">
+                            <i class="fas fa-bolt"></i>
+                            Quick Start
+                        </a>
+                        <a href="docs/getting-started/system-requirements" class="dropdown-item">
+                            <i class="fas fa-server"></i>
+                            System Requirements
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">User Guide ▼</a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        User Guide
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
                     <div class="dropdown">
-                        <a href="docs/user-guide/deviations" class="dropdown-item">Deviations Management</a>
-                        <a href="docs/user-guide/capas" class="dropdown-item">CAPA Management</a>
-                        <a href="docs/user-guide/user-management" class="dropdown-item">User Management</a>
+                        <a href="docs/user-guide/deviations" class="dropdown-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Deviations Management
+                        </a>
+                        <a href="docs/user-guide/capas" class="dropdown-item">
+                            <i class="fas fa-clipboard-check"></i>
+                            CAPA Management
+                        </a>
+                        <a href="docs/user-guide/user-management" class="dropdown-item">
+                            <i class="fas fa-users-cog"></i>
+                            User Management
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Technical ▼</a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-code"></i>
+                        Technical
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
                     <div class="dropdown">
-                        <a href="docs/technical/api-reference" class="dropdown-item">API Reference</a>
-                        <a href="docs/technical/architecture" class="dropdown-item">System Architecture</a>
-                        <a href="docs/technical/deployment" class="dropdown-item">Deployment Guide</a>
+                        <a href="docs/technical/api-reference" class="dropdown-item">
+                            <i class="fas fa-plug"></i>
+                            API Reference
+                        </a>
+                        <a href="docs/technical/architecture" class="dropdown-item">
+                            <i class="fas fa-sitemap"></i>
+                            System Architecture
+                        </a>
+                        <a href="docs/technical/deployment" class="dropdown-item">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Deployment Guide
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Compliance ▼</a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-shield-alt"></i>
+                        Compliance
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
                     <div class="dropdown">
-                        <a href="docs/compliance/regulatory" class="dropdown-item">Regulatory Compliance</a>
-                        <a href="docs/compliance/security" class="dropdown-item">Security Framework</a>
-                        <a href="docs/compliance/audit-trails" class="dropdown-item">Audit Trail Management</a>
+                        <a href="docs/compliance/regulatory" class="dropdown-item">
+                            <i class="fas fa-balance-scale"></i>
+                            Regulatory Compliance
+                        </a>
+                        <a href="docs/compliance/security" class="dropdown-item">
+                            <i class="fas fa-lock"></i>
+                            Security Framework
+                        </a>
+                        <a href="docs/compliance/audit-trails" class="dropdown-item">
+                            <i class="fas fa-search"></i>
+                            Audit Trail Management
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -302,46 +628,89 @@
     </header>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content fade-in">
         <section class="hero">
-            <h1>Masetra Quality Management System Documentation</h1>
-            <p>Comprehensive documentation for Masetra - the leading digital quality management solution for the pharmaceutical industry in East Africa.</p>
+            <div class="hero-content">
+                <i class="fas fa-file-alt hero-icon"></i>
+                <h1>Masetra Quality Management System Documentation</h1>
+                <p>Comprehensive documentation for Masetra - the leading digital quality management solution for the pharmaceutical industry in East Africa.</p>
+            </div>
         </section>
 
         <section class="cards-section">
             <h2 class="section-title">Documentation Sections</h2>
             <div class="cards-grid">
                 <div class="card">
-                    <h3>📘 Getting Started</h3>
-                    <p>Installation guides, system requirements, and quick start tutorials to get you up and running with Masetra.</p>
-                    <a href="docs/getting-started/installation" class="btn">Get Started</a>
+                    <div class="card-content">
+                        <i class="fas fa-rocket card-icon"></i>
+                        <h3>Getting Started</h3>
+                        <p>Installation guides, system requirements, and quick start tutorials to get you up and running with Masetra in no time.</p>
+                        <a href="docs/getting-started/installation" class="btn">
+                            <span class="btn-content">
+                                <i class="fas fa-arrow-right"></i>
+                                Get Started
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="card">
-                    <h3>👥 User Guide</h3>
-                    <p>Comprehensive guides on using Masetra features and workflows for daily operations.</p>
-                    <a href="docs/user-guide/deviations" class="btn">Learn More</a>
+                    <div class="card-content">
+                        <i class="fas fa-users card-icon"></i>
+                        <h3>User Guide</h3>
+                        <p>Comprehensive guides on using Masetra features and workflows for daily operations and quality management tasks.</p>
+                        <a href="docs/user-guide/deviations" class="btn">
+                            <span class="btn-content">
+                                <i class="fas fa-book-open"></i>
+                                Learn More
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="card">
-                    <h3>⚙️ Technical</h3>
-                    <p>Architecture, API reference, and deployment information for developers and IT teams.</p>
-                    <a href="docs/technical/architecture" class="btn">Technical Docs</a>
+                    <div class="card-content">
+                        <i class="fas fa-cogs card-icon"></i>
+                        <h3>Technical</h3>
+                        <p>Architecture documentation, API reference, and deployment information for developers and IT teams.</p>
+                        <a href="docs/technical/architecture" class="btn">
+                            <span class="btn-content">
+                                <i class="fas fa-code"></i>
+                                Technical Docs
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="card">
-                    <h3>⚖️ Compliance</h3>
-                    <p>Regulatory requirements, security measures, and audit information for compliance teams.</p>
-                    <a href="docs/compliance/regulatory" class="btn">Compliance</a>
+                    <div class="card-content">
+                        <i class="fas fa-shield-alt card-icon"></i>
+                        <h3>Compliance</h3>
+                        <p>Regulatory requirements, security measures, and audit information for compliance teams and quality assurance.</p>
+                        <a href="docs/compliance/regulatory" class="btn">
+                            <span class="btn-content">
+                                <i class="fas fa-check-circle"></i>
+                                Compliance
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section style="text-align: center; margin-top: 3rem;">
-            <h3>Need Help?</h3>
-            <p>For support and questions, contact our team at <a href="mailto:info@masetra.com" style="color: #0366d6;">info@masetra.com</a></p>
-            <div style="margin-top: 1rem;">
-                <a href="https://github.com/masetra/masetra-docs" class="btn btn-secondary">View on GitHub</a>
+        <section class="help-section">
+            <h3>
+                <i class="fas fa-question-circle"></i>
+                Need Help?
+            </h3>
+            <p>For support and questions, contact our team at <a href="mailto:info@masetra.com">info@masetra.com</a></p>
+            <div style="margin-top: 2rem;">
+                <a href="https://github.com/masetra/masetra-docs" class="btn btn-secondary">
+                    <span class="btn-content">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </span>
+                </a>
             </div>
         </section>
     </main>
@@ -350,8 +719,31 @@
     <footer class="footer">
         <div class="footer-content">
             <p>© 2025 Masetra-Group. All rights reserved.</p>
-            <p>Built with ❤️ for the pharmaceutical industry</p>
+            <p>Built with <span class="footer-heart">❤️</span> for the pharmaceutical industry</p>
         </div>
     </footer>
+
+    <script>
+        // Add smooth scrolling and animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to cards when they come into view
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>

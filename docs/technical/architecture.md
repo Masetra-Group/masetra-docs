@@ -1,5 +1,7 @@
 ---
-title: System Architecture
+layout: default
+title: "System Architecture"
+description: "Comprehensive overview of Masetra's technical architecture, design principles, and system components"
 ---
 
 # Masetra System Architecture
@@ -11,6 +13,8 @@ Comprehensive overview of Masetra's technical architecture, design principles, a
 Masetra follows a modern, scalable microservices architecture designed for high availability, security, and regulatory compliance. The system is built using industry-standard technologies and follows best practices for enterprise software development.
 
 ### High-Level Architecture Diagram
+
+```json
 ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
 │ Web Client │ │ Mobile Client │ │ API Clients │
 │ (React/TypeScript) │ │ (React Native) │ │ (Third-party) │
@@ -48,11 +52,12 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 │ • Data Processing │
 │ • Compliance Checks │
 └─────────────────────────────┘
-
+```
 
 ## 🛠️ Technology Stack
 
 ### Frontend Technologies
+
 - **Framework:** React 18+ with TypeScript
 - **UI Library:** Material-UI v5
 - **State Management:** Redux Toolkit
@@ -62,6 +67,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Mobile:** React Native for mobile apps
 
 ### Backend Technologies
+
 - **Framework:** Django 4.2+ with Django REST Framework
 - **Database:** PostgreSQL 14+
 - **Caching:** Redis 7+
@@ -72,6 +78,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Testing:** pytest, Django Test Framework
 
 ### Infrastructure
+
 - **Cloud Platform:** AWS or Azure
 - **Containerization:** Docker
 - **Orchestration:** Kubernetes
@@ -83,7 +90,9 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 ## 📦 Core Services
 
 ### Authentication Service
+
 **Responsibilities:**
+
 - User authentication and authorization
 - JWT token generation and validation
 - Single Sign-On (SSO) integration
@@ -91,71 +100,87 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - Session management
 
 **Components:**
+
 - User management
 - Role-based access control
 - Permission system
 - Audit logging
 
 ### Deviation Management Service
+
 **Responsibilities:**
+
 - Deviation creation and lifecycle management
 - Investigation workflow
 - Approval processes
 - Reporting and analytics
 
 **Components:**
+
 - Deviation records
 - Attachment management
 - Workflow engine
 - Notification system
 
 ### CAPA Management Service
+
 **Responsibilities:**
+
 - Corrective and preventive action management
 - Root cause analysis tools
 - Action planning and tracking
 - Effectiveness verification
 
 **Components:**
+
 - CAPA records
 - Task management
 - Milestone tracking
 - Integration with deviation service
 
 ### Document Management Service
+
 **Responsibilities:**
+
 - Electronic document control
 - Version management
 - Approval workflows
 - Search and retrieval
 
 **Components:**
+
 - Document repository
 - Version control system
 - Approval workflow engine
 - Metadata management
 
 ### Audit Management Service
+
 **Responsibilities:**
+
 - Internal audit scheduling
 - Audit finding management
 - Compliance tracking
 - Reporting
 
 **Components:**
+
 - Audit planning
 - Finding tracking
 - Corrective action linkage
 - Compliance dashboard
 
 ### Reporting Service
+
 **Responsibilities:**
+
 - Real-time dashboards
 - Custom report generation
 - Data analytics
 - Export capabilities
 
 **Components:**
+
 - Report engine
 - Charting library
 - Data visualization
@@ -164,9 +189,11 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 ## 🗄️ Data Architecture
 
 ### Database Schema
+
 **Primary Database:** PostgreSQL with the following key tables:
 
 #### Core Tables
+
 - `users` - User accounts and profiles
 - `organizations` - Company/organization data
 - `roles` - Role definitions and permissions
@@ -178,6 +205,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - `audit_trail` - Comprehensive audit logging
 
 #### Relationship Design
+
 - **One-to-Many:** Organization → Users
 - **Many-to-Many:** Users ↔ Roles
 - **One-to-Many:** Deviations → Attachments
@@ -186,6 +214,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Many-to-Many:** Users ↔ Notifications
 
 ### Data Flow
+
 1. **Input:** User actions, API calls, system events
 2. **Processing:** Business logic validation
 3. **Storage:** Database persistence with transaction support
@@ -194,6 +223,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 6. **Output:** API responses, reports, notifications
 
 ### Backup and Recovery
+
 - **Daily Backups:** Full database snapshots
 - **Hourly Backups:** Transaction log backups
 - **Point-in-Time Recovery:** Restore to specific timestamps
@@ -203,6 +233,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 ## 🔒 Security Architecture
 
 ### Authentication and Authorization
+
 - **Multi-Factor Authentication:** Optional or required
 - **Role-Based Access Control:** Granular permission system
 - **Session Management:** Secure session handling
@@ -210,6 +241,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Single Sign-On:** Integration with corporate directories
 
 ### Data Protection
+
 - **Encryption at Rest:** AES-256 encryption for stored data
 - **Encryption in Transit:** TLS 1.3 for all communications
 - **Database Security:** Row-level security and masking
@@ -217,6 +249,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **File Security:** Secure file storage and access
 
 ### Compliance Features
+
 - **Audit Trail:** Comprehensive logging of all actions
 - **Electronic Signatures:** 21 CFR Part 11 compliant
 - **Data Retention:** Configurable retention policies
@@ -224,6 +257,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Immutable Logs:** Non-modifiable audit records
 
 ### Network Security
+
 - **Firewall Rules:** Restrictive network access
 - **DDoS Protection:** Cloud-based protection services
 - **Intrusion Detection:** Real-time monitoring
@@ -233,6 +267,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 ## 🚀 Scalability and Performance
 
 ### Horizontal Scaling
+
 - **Microservices:** Independent service scaling
 - **Database Sharding:** Data distribution across nodes
 - **Load Balancing:** Traffic distribution
@@ -240,6 +275,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Caching Layers:** Multi-level caching strategy
 
 ### Performance Optimization
+
 - **Database Indexing:** Optimized query performance
 - **Query Optimization:** Efficient database queries
 - **Caching Strategy:** Redis for frequently accessed data
@@ -247,6 +283,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Database Connection Pooling:** Efficient connection management
 
 ### Monitoring and Observability
+
 - **Application Performance Monitoring:** Real-time performance metrics
 - **Infrastructure Monitoring:** System resource utilization
 - **Business Metrics:** Key performance indicators
@@ -256,6 +293,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 ## 🌐 Integration Architecture
 
 ### API Gateway
+
 - **Rate Limiting:** Protect against API abuse
 - **Authentication:** Centralized authentication
 - **Routing:** Service routing and load balancing
@@ -263,6 +301,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Analytics:** API usage analytics
 
 ### Third-Party Integrations
+
 - **ERP Systems:** SAP, Oracle, Microsoft Dynamics
 - **LIMS Systems:** Laboratory Information Management
 - **Email Services:** SMTP, SendGrid, Mailgun
@@ -270,6 +309,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Document Management:** SharePoint, Google Workspace
 
 ### Data Integration Patterns
+
 - **RESTful APIs:** Standard web service integration
 - **Webhooks:** Real-time event notifications
 - **Message Queues:** Asynchronous processing
@@ -279,6 +319,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 ## 📈 Monitoring and Logging
 
 ### Application Monitoring
+
 - **Uptime Monitoring:** 99.9% SLA tracking
 - **Performance Metrics:** Response times, throughput
 - **Error Rates:** Application error tracking
@@ -286,6 +327,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Business Metrics:** Key performance indicators
 
 ### Infrastructure Monitoring
+
 - **Server Health:** CPU, memory, disk usage
 - **Network Performance:** Bandwidth and latency
 - **Database Performance:** Query performance, connections
@@ -293,6 +335,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Container Health:** Docker/Kubernetes monitoring
 
 ### Logging Architecture
+
 - **Structured Logging:** JSON-formatted log entries
 - **Centralized Logging:** ELK Stack for log aggregation
 - **Log Retention:** Configurable retention policies
@@ -302,6 +345,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 ## 🛠️ Development and Deployment
 
 ### Development Environment
+
 - **Local Development:** Docker-based development setup
 - **Version Control:** Git with GitHub
 - **Code Review:** Pull request workflow
@@ -309,6 +353,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 - **Feature Flags:** Gradual feature rollout
 
 ### Deployment Pipeline
+
 1. **Code Commit:** Developer pushes code to repository
 2. **Automated Testing:** Unit and integration tests
 3. **Security Scanning:** Vulnerability assessment
@@ -318,6 +363,7 @@ Masetra follows a modern, scalable microservices architecture designed for high 
 7. **Monitoring:** Post-deployment monitoring
 
 ### Environment Strategy
+
 - **Development:** Local and shared development environments
 - **Staging:** Production-like testing environment
 - **Production:** Live customer environment

@@ -1,5 +1,7 @@
 ---
-title: API Reference
+layout: default
+title: "API Reference"
+description: "Comprehensive documentation for Masetra's RESTful API endpoints and integration capabilities"
 ---
 
 # Masetra API Reference
@@ -11,10 +13,12 @@ Comprehensive documentation for Masetra's RESTful API endpoints and integration 
 Masetra provides a comprehensive RESTful API that allows integration with external systems, custom applications, and automated workflows. All API endpoints follow REST principles and return JSON responses.
 
 ### Base URL
+
 https://api.masetra.com/v1/
 
 
 ### Authentication
+
 All API requests require authentication using JWT (JSON Web Tokens).
 
 ```bash
@@ -33,33 +37,31 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 Response Format
 All responses are returned in JSON format with standard HTTP status codes.
-json
-⌄
+
+```json
 {
   "status": "success",
   "data": {},
   "message": "Optional descriptive message"
 }
-
+```
 
 🔐 Authentication Endpoints
 POST /api/auth/token/
 Obtain Access Token
 
 Request:
-json
-⌄
+
+```json
 {
   "username": "string",
   "password": "string"
 }
+```
 
 Response:
-json
-Response:
 
-json
-⌄
+```json
 {
   "access": "jwt_token_string",
   "refresh": "refresh_token_string",
@@ -70,36 +72,37 @@ json
     "last_name": "Doe"
   }
 }
+```
 
 POST /api/auth/refresh/
 Refresh Access Token
 
 Request:
 
-json
-⌄
+```json
 {
   "refresh": "refresh_token_string"
 }
+```
 
 Response:
 
-json
-⌄
+```json
 {
   "access": "new_jwt_token_string"
 }
+```
 
 POST /api/auth/logout/
 Logout User
 
 Request:
 
-json
-⌄
+```json
 {
   "refresh": "refresh_token_string"
 }
+```
 
 📋 Deviations API
 GET /api/deviations/
@@ -115,8 +118,7 @@ date_from (date): Filter from date
 date_to (date): Filter to date
 Response:
 
-json
-⌄
+```json
 {
   "count": 100,
   "next": "https://api.masetra.com/v1/deviations/?page=2",
@@ -138,13 +140,14 @@ json
     }
   ]
 }
+```
+
 POST /api/deviations/
 Create New Deviation
 
 Request:
 
-json
-⌄
+```json
 {
   "title": "string",
   "description": "string",
@@ -157,13 +160,14 @@ json
   "related_product": "string",
   "priority": "LOW|MEDIUM|HIGH|URGENT"
 }
+```
+
 GET /api/deviations/{id}/
 Get Specific Deviation
 
 Response:
 
-json
-⌄
+```json
 {
   "id": 1,
   "deviation_number": "DEV-2024-0001",
@@ -200,6 +204,8 @@ json
     "completed_at": "2024-01-18T11:00:00Z"
   }
 }
+```
+
 PUT /api/deviations/{id}/
 Update Deviation
 
@@ -221,8 +227,7 @@ Create New CAPA
 
 Request:
 
-json
-⌄
+```json
 {
   "title": "string",
   "description": "string",
@@ -232,6 +237,7 @@ json
   "source_type": "DEVIATION|AUDIT|COMPLAINT|MANUAL",
   "source_id": 1
 }
+```
 
 GET /api/capas/{id}/
 Get Specific CAPA
@@ -302,14 +308,14 @@ capa.closed
 capa.approved
 
 Webhook Configuration
-json
-⌄
+
+```json
 {
   "url": "https://your-system.com/webhook",
   "events": ["deviation.created", "capa.closed"],
   "secret": "your_webhook_secret"
 }
-
+```
 
 📞 Error Handling
 HTTP Status Codes
@@ -324,8 +330,8 @@ HTTP Status Codes
 500 Internal Server Error: Server error
 
 Error Response Format
-json
-⌄
+
+```json
 {
   "status": "error",
   "error": {
@@ -339,7 +345,7 @@ json
     ]
   }
 }
-
+```
 
 🔧 Rate Limiting
 API requests are rate-limited to prevent abuse:
@@ -362,14 +368,14 @@ Java: Maven dependency available
 .NET: NuGet package available
 
 Example Usage (Python)
-python
-⌄
+```python
 from masetra_sdk import MasetraClient
 
 client = MasetraClient(
     base_url="https://api.masetra.com/v1/",
     api_key="your_api_key"
 )
+```
 
 # Create deviation
 deviation = client.deviations.create({
